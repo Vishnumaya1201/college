@@ -1,0 +1,66 @@
+<style>
+.div1{
+    
+    color:white;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px 0px;
+    
+}
+</style>
+{% extends 'admintemplates/base.html' %}
+{% block content %}
+
+<div class="container mt-5 div1" style="width:50%; justify-items: center;">
+    <br><br>
+    <h1 class="text-center">ADD NEW STUDENT</h1>
+    <form  method='post' action="{% url 'addStudent'  %}" >
+    {% csrf_token %}
+    <div class="form-group">
+        <label > NAME</label>
+        <input type="text" class="form-control"  placeholder="Enter  name" name="sname" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group">
+        <label >ADDRESS</label>
+        <input type="text" class="form-control"  placeholder="Enter address" name="saddr" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group">
+        <label >AGE</label>
+        <input type="number" class="form-control"  placeholder="Enter age" name="sage" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group">
+        <label >JOIN DATE</label>
+        <input type="date" class="form-control"  placeholder="Enter joindate" name="sjdate" required>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    
+    <div class="form-group">
+        <label >COURSE</label>
+        <select  class="form-control"  name="scourse" >
+            {% for sc in courselist %}
+            <option value="{{ sc.id }}"> {{ sc.course_name }}</option>
+            {% endfor %}
+            <!-- <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option> -->
+          </select>
+    </div>
+    
+      
+    <center>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" style="width:50%">Submit</button><br><br>
+            <a href="{% url 'adminHome' %}" class="btn btn-danger" style="width:50%">Cancel </a>
+        </div>
+    </center>
+    
+  </form>
+</div>
+
+{% endblock %}

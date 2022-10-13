@@ -1,0 +1,91 @@
+<style>
+    .div1{
+        
+        color:white;
+        border-radius: 15px;
+        box-shadow: 0px 5px 10px 0px;
+        
+
+
+        background-color: #9beeee;
+    }
+</style>
+
+
+{% extends 'staff/staffBase.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container mt-5 div1" style="width:30%; justify-items: center; ">
+    <br><br>
+    <h1 class="text-center">EDIT PROFILE</h1>
+    {% for stf in staffs %}
+    <form  method='post' action="{% url 'editProfile' stf.id %} " enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="form-group">
+
+        <label >FIRST NAME</label>
+        <input type="text" class="form-control"   name="s_fname" value="{{ stf.st_user.first_name }}">
+    </div>
+    <div class="form-group">
+        <label >LAST NAME</label>
+        <input type="text" class="form-control"  name="s_lname" value="{{ stf.st_user.last_name }}">   
+    </div> 
+    <div class="form-group">
+        <label >ADDRESS</label>
+        <input type="text" class="form-control"   name="s_addr" value="{{ stf.st_address }}">   
+    </div>
+    <div class="form-group">
+        <label >EMAIL</label>
+        <input type="email" class="form-control"   name="s_email" value="{{ stf.st_user.email }}">  
+    </div>
+    <div class="form-group">
+        <label >USER NAME</label>
+        <input type="text" class="form-control"   name="s_uname" value="{{ stf.st_user.username }}">  
+    </div>
+    
+    <div class="form-group">
+        <label >GENDER</label>
+        <input type="radio" {% if stf.st_gender == 'male' %} checked {% endif %}  value="male"  name="s_gender"  style="width:30px" >Male
+        <input type="radio" {% if stf.st_gender == 'female' %} checked {% endif %}  value="female" name="s_gender"  style="width:30px" >Female
+        <input type="radio" {% if stf.st_gender == 'others' %} checked {% endif %} value="others" name="s_gender"  style="width:30px" >Others
+        
+    </div>
+    <div class="form-group">
+        <label >PHONE NUMBER</label>
+        <input type="tel" class="form-control"  name="s_phone" value="{{ stf.st_phone }}">
+       
+    </div>
+    <div class="form-group">
+        <label>IMAGE</label>
+        
+        {% if stf.st_photo == '/static/images/default.jpg' %}
+        <td>
+            <img src="/static/images/default.jpg" height="100px" width="100px">
+      
+        </td>
+        {% else %}
+        <td>
+            <img src="{{ stf.st_photo.url }}"  height="100px"   width="100px">
+            
+        </td>
+        {% endif %}
+
+        <input type="file" class="form_control" name="s_image" accept="image/*">
+        <!-- <input type="file" class="form-control"  name="pImage" accept="image/*"> -->
+      </div>
+    {% endfor %}
+       
+    <center>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" style="width:50%">Update</button><br><br>
+            <a href="#" class="btn btn-danger" style="width:50%">Cancel </a>
+        </div>
+    </center>
+    
+  </form>
+</div>
+
+{% endblock %}

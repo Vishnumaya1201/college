@@ -1,0 +1,50 @@
+<style>
+    th{
+        color:gold;
+        background-color: darkblue;
+    }
+</style>
+
+{% extends 'admintemplates/base.html' %}
+{% block content %}
+
+
+<div class="container-fluid"style="margin-top:10%;">
+ <div class="container ">
+    <h1 class="text-center" style="color:gold;">STAFF DETAILS</h1>
+    <table class="table table-striped" style="background-color:darkblue;color:aliceblue">
+        <thead>
+            <tr>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                 <th>GENDER</th>
+                <th>PHONE</th>
+                <th>EMAIL</th>
+                <th>ADDRESS</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in stf %}
+            <tr>
+                <td>{{ i.st_user.first_name }}</td>
+                <td>{{ i.st_user.last_name }}</td>
+                <td>{{ i.st_gender }}</td>
+                <td>{{ i.st_phone }}</td>
+                <td>{{ i.st_user.email }}</td>
+                <td>{{ i.st_address }}</td>
+                <td>
+                    
+                    <a href="{% url 'deleteStaff' i.id %}" class="btn btn-danger" >Delete</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</div>
+
+{% endblock %}

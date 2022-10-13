@@ -1,0 +1,41 @@
+{% extends 'staff/staffBase.html' %}
+{% block content %}
+
+<div class="container-fluid"style="margin-top:10%;">
+ <div class="container ">
+    <h1 class="text-center" style="color:white;">STUDENTS DETAILS</h1>
+    <table class="table table-striped" style="background-color:darkblue;color:aliceblue">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Address</th>
+                <th>Age</th>
+                <th>Joining Date</th>
+                <th>Course</th>
+                <th>Course Fee</th>
+             
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in std %}
+            <tr>
+                <td>{{ i.std_name }}</td>
+                <td>{{ i.std_address }}</td>
+                <td>{{ i.std_age }}</td>
+                <td>{{ i.std_joindate }}</td>
+                <td>{{ i.std_course.course_name }}</td>
+                <td>{{ i.std_course.course_fee }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <center>
+        <div class="form-group">
+           <a href="{% url 'staffHome' %}"  class="btn btn-success">HOME</a>    
+        </div>
+    </center>
+</div>
+
+</div>
+{% endblock %}

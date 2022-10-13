@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% load static %} 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>ADMIN PANEL</title>
+    <style>
+      body{
+        background-image:url('/static/images/adm.jpg');
+        background-size: cover;
+      }
+      a{
+        color: #fff;
+      }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-md " style="background-color:rgb(24, 62, 132);">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#"><i class="fa fa-user"></i>ADMIN</a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse " id="collapsibleNavbar">
+          <ul class="navbar-nav ml-auto" >
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'showStaff' %}">STAFF </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'addCourse_page' %}">ADD COURSE</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'addStudent_page' %}">ADD STUDENT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'showStudents' %}">SHOW STUDENTS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'userLogout' %}">LOG OUT</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      {% if messages %}
+        {% for message in messages %}
+                <div class="alert alert-success " style="width: 100%; font-size:10px;">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span> 
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+      {% block content %}
+
+      {% endblock %}
+</body>
+</html>
